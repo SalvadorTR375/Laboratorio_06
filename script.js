@@ -72,10 +72,13 @@ $("#animals").on("click", ".random-image", function(){
 
 // La lógica del formulario para agregar mas botones a la lista
 $("#add-animal").on("click", function(e) {
+ 
     e.preventDefault();
+    let tema = $("#animal-input").val().trim()
+    temas.push(tema);
+    populateButtons(temas);
 
 })
-
 
 populateButtons(temas);
 });
