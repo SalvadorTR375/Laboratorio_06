@@ -7,7 +7,7 @@ body {
   width: 70%;
 }
 
-.animal-item {
+.random-item {
   float: left;
   padding: 10px;
 }
@@ -59,6 +59,3 @@ button.active {
   margin-bottom: 5px;
 }
 
-.randomGifs {
-  margin-left: 15px;
-}

@@ -23,7 +23,8 @@ array.forEach(element => {
 });
 }
 
-// La logica del click de cada boton para hacer la llamada al API
+
+// La logica del click de cada boton para hacer la llamada al API -- LISTOOOOOO
 $("#animal-buttons").on("click", ".animal-button", function() {
     
     $("#animals").empty();
@@ -42,8 +43,9 @@ $("#animal-buttons").on("click", ".animal-button", function() {
         for (const element of respuesta.data){
             let rating = element.rating
             let still_Img = element.images.fixed_height_still.url
+            let moving_Img = element.images.fixed_height.url
 
-            $("#animals").append(`<div class=randomRatings> ${rating} </div> <img class=randomGifs src=${still_Img}> <br> <br>`)
+            $("#animals").append(`<div class="random-item"> <p> ${rating} </p> <img class=random-image src=${still_Img} data-still=${still_Img} data-animate=${moving_Img} data-state="still"> </div>`)
         }
 
     })
@@ -51,9 +53,19 @@ $("#animal-buttons").on("click", ".animal-button", function() {
 })
 
 
-// La lógica del click de cada imagen para "intercambiar las urls"
-$("#animals").on("click", ".animal-image", function(){
+// La lógica del click de cada imagen para "intercambiar las urls" -- LISTOOOOO
+$("#animals").on("click", ".random-image", function(){
 
+    let estado = $(this).attr('data-state');
+
+    if(estado == "still"){
+        $(this).attr("src",$(this).attr("data-animate"))
+        $(this).attr("data-state","animate");
+    }
+    else{
+        $(this).attr("src",$(this).attr("data-still"))
+        $(this).attr("data-state","still");
+    }
 
 })
 
