@@ -52,3 +52,13 @@ input[type="submit"]:hover {
 button.active {
   background: #334e4d;
 }
+
+.randomRatings {
+  margin-left: 200px;
+  font-weight: bolder;
+  margin-bottom: 5px;
+}
+
+.randomGifs {
+  margin-left: 15px;
+}

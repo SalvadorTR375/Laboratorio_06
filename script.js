@@ -2,11 +2,11 @@ $(document).ready(function() {
 
 // Start your code from here
 
-let animals = [
-    "dog", "cat", "rabbit", "hamster", "skunk", "goldfish",
-    "bird", "ferret", "turtle", "sugar glider", "chinchilla",
-    "hedgehog", "hermit crab", "gerbil", "pygmy goat", "chicken",
-    "capybara", "teacup pig", "serval", "salamander", "frog"
+let temas = [
+    "action", "blue", "salsa", "Mario", "beauty", "power",
+    "bird", "cycling", "turtle", "videogames", "3d",
+    "Sonic", "Link", "twilight", "destiny", "running",
+    "capybara", "path", "power of friendship", "sand", "sword"
   ];
 
 
@@ -15,7 +15,7 @@ let animals = [
 
 array.forEach(element => {
     
-    var a = $("<button>");
+    let a = $("<button>");
     a.text(element)
     a.addClass("animal-button")
     a.attr("data-type",element)
@@ -23,10 +23,30 @@ array.forEach(element => {
 });
 }
 
-// La logica del click de cada boton para hacer la llamda al API
+// La logica del click de cada boton para hacer la llamada al API
 $("#animal-buttons").on("click", ".animal-button", function() {
-
+    
     $("#animals").empty();
+    let temaName = $(this).attr("data-type");
+    let apiKey = 'vy2X3alZ1Yl8WAhJpfVakiBiOaugG3kU';
+    let gifURL = `https://api.giphy.com/v1/gifs/search?q=${temaName}&api_key=${apiKey}&limit=10`;
+    console.log(gifURL)
+
+    $.ajax({
+        url: gifURL,
+        method: "GET"
+    }).then(function(respuesta){
+
+        // respuesta2 = JSON.stringify(respuesta.data.length) PRUEBASSS
+        // $("#animals").append(`<h2> ${respuesta2} </h2>`) PRUEBASSSS
+        for (const element of respuesta.data){
+            let rating = element.rating
+            let still_Img = element.images.fixed_height_still.url
+
+            $("#animals").append(`<div class=randomRatings> ${rating} </div> <img class=randomGifs src=${still_Img}> <br> <br>`)
+        }
+
+    })
 
 })
 
@@ -45,5 +65,10 @@ $("#add-animal").on("click", function(e) {
 })
 
 
-populateButtons(animals);
+populateButtons(temas);
 });
+
+/*
+    var 
+
+*/
